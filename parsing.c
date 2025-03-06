@@ -1,8 +1,8 @@
 #include "push_swap.h"
 
-static void is_num(char *str);
+static void is_num(const char *str);
 
-void parsing(char *av[])
+void parsing(const char *av[])
 {
     int i;
     long nu;
@@ -11,12 +11,12 @@ void parsing(char *av[])
     while (av[i] != NULL)
     {
         is_num(av[i]);
-        nu = ft_atoll(av[i]);
+        nu = ft_atol(av[i]);
         i++;
     }
 }
 
-static void is_num(char *str)
+static void is_num(const char *str)
 {
     int i;
 

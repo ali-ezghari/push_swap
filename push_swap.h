@@ -20,8 +20,8 @@ typedef struct s_list
     int size;
 } t_list;
 
-long ft_atoll(char *str);
+long ft_atol(const char *str);
 void err_msg(void);
-void parsing(char *av[]);
+void parsing(const char *av[]);
 
 #endif
