@@ -26,8 +26,55 @@ long ft_atol(const char *str)
     return (res * sign);
 }
 
+t_stack *create_node(int data)
+{
+    t_stack *node;
+
+    node = malloc(sizeof(t_list));
+    node->prev = NULL;
+    node->num = data;
+    node->next = NULL;
+    return (node);
+}
+
+void free_mem(t_list **stack)
+{
+    t_stack *tmp;
+
+    if (!stack || !*stack)
+        return;
+    while ((*stack)->stack_a)
+    {
+        tmp = (*stack)->stack_a;
+        (*stack)->stack_a = (*stack)->stack_a->next;
+        free(tmp);
+    }
+    while ((*stack)->stack_b)
+    {
+        tmp = (*stack)->stack_b;
+        (*stack)->stack_b = (*stack)->stack_b->next;
+        free(tmp);
+    }
+    free(*stack);
+    *stack = NULL;
+}
+
 void err_msg(void)
 {
-    write(2, "Error\n", 6);
+    int i;
+
+    i = write(2, "Error\n", 6);
+    i++;
     exit(1);
+}
+void	ft_putstr(char *str)
+{
+	int	i;
+
+	i = 0;
+	while (str[i])
+	{
+		write(1, &str[i], 1);
+		i++;
+	}
 }
