@@ -13,26 +13,23 @@ t_list *init_stack()
     return (stack);
 }
 
-void fill_stack(const char *argv[], t_list **stack)
+void fill_stack(int argc, const char *argv[], t_list **stack)
 {
     t_stack *new_node;
     int num;
-    int i;
 
     if (!stack || !*stack)
         err_msg();
-    i = 0;
-    while (argv[i] != NULL)
+    while (--argc > 0)
     {
-        num = (int)ft_atol(argv[i]);
+        num = (int)ft_atol(argv[argc]);
         new_node = create_node(num);
         if (!new_node)
             err_msg();
         if ((*stack)->stack_a != NULL)
-            new_node->next = (*stack)->stack_a;
+            (*stack)->stack_a->prev = new_node;
         new_node->next = (*stack)->stack_a;
         (*stack)->stack_a = new_node;
         (*stack)->size++;
-        i++;
     }
 }

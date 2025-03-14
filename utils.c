@@ -31,6 +31,8 @@ t_stack *create_node(int data)
     t_stack *node;
 
     node = malloc(sizeof(t_list));
+    if (!node)
+        err_msg();
     node->prev = NULL;
     node->num = data;
     node->next = NULL;
@@ -67,14 +69,18 @@ void err_msg(void)
     i++;
     exit(1);
 }
-void	ft_putstr(char *str)
-{
-	int	i;
 
-	i = 0;
-	while (str[i])
-	{
-		write(1, &str[i], 1);
-		i++;
-	}
+void ft_putstr(char *str)
+{
+    int i;
+    int j;
+
+    j = 0;
+    i = 0;
+    while (str[i])
+    {
+        j = write(1, &str[i], 1);
+        i++;
+        j++;
+    }
 }

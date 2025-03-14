@@ -1,10 +1,10 @@
 CC = cc
 FLAGS = -Wall -Wextra -Werror
-SRCS = main.c utils.c parsing.c init.c swap_op.c push_op.c rotate_op.c
+SRCS = main.c utils.c parsing.c init.c swap_op.c push_op.c rotate_op.c reverse_rotate.c sort.c utils2.c ft_swap.c
 OBJS = $(SRCS:.c=.o)
 NAME = push_swap
 
-all: $(NAME)
+all: $(NAME) clean
 
 %.o: %.c
 	@$(CC) $(FLAGS) -O3 -c $< -o $@
@@ -18,6 +18,6 @@ clean:
 fclean: clean
 	@rm -f $(NAME)
 
-re: fclean all
+re: fclean all clean
 
 .PHONY: all clean fclean re
