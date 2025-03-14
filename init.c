@@ -6,7 +6,7 @@ t_list *init_stack()
 
     stack = malloc(sizeof(t_list));
     if (!stack)
-        err_msg();
+        return (NULL);
     stack->stack_a = NULL;
     stack->stack_b = NULL;
     stack->size = 0;
@@ -19,13 +19,13 @@ void fill_stack(int argc, const char *argv[], t_list **stack)
     int num;
 
     if (!stack || !*stack)
-        err_msg();
+        err_msg(stack,1);
     while (--argc > 0)
     {
         num = (int)ft_atol(argv[argc]);
         new_node = create_node(num);
         if (!new_node)
-            err_msg();
+            err_msg(stack,1);
         if ((*stack)->stack_a != NULL)
             (*stack)->stack_a->prev = new_node;
         new_node->next = (*stack)->stack_a;

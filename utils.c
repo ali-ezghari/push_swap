@@ -22,7 +22,9 @@ long ft_atol(const char *str)
         i++;
     }
     if ((res * sign) > INT_MAX || (res * sign) < INT_MIN)
-        err_msg();
+    {
+        write(2,"Error\n",5);
+    }
     return (res * sign);
 }
 
@@ -32,7 +34,7 @@ t_stack *create_node(int data)
 
     node = malloc(sizeof(t_list));
     if (!node)
-        err_msg();
+        return (NULL);
     node->prev = NULL;
     node->num = data;
     node->next = NULL;
@@ -61,10 +63,14 @@ void free_mem(t_list **stack)
     *stack = NULL;
 }
 
-void err_msg(void)
+void err_msg(t_list **stack, int status)
 {
     int i;
 
+    if (status == 1)
+    {
+        free_mem(stack);
+    }
     i = write(2, "Error\n", 6);
     i++;
     exit(1);

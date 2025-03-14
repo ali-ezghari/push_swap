@@ -44,39 +44,35 @@ int ft_max(t_stack *stack)
     return (index);
 }
 
-int *insertion_sort(int arr[], int size)
+int *create_sort_array(t_list *stack)
 {
-    int i, tmp, j;
+    int *arr;
+    int i;
+    t_stack *tmp;
 
-    if (size <= 1)
-        return arr;
-
-    for (i = 1; i < size; i++) // Start from index 1
+    arr = (int *)malloc(sizeof(int) * stack->size);
+    if (!arr)
+        return (0);
+    i = 0;
+    tmp = stack->stack_a;
+    while (tmp)
     {
-        tmp = arr[i];
-        j = i - 1;
-        while (j >= 0 && arr[j] > tmp)
-        {
-            arr[j + 1] = arr[j]; // Shift instead of swapping
-            j--;
-        }
-        arr[j + 1] = tmp; // Insert tmp once in the correct place
+        arr[i] = tmp->num;
+        tmp = tmp->next;
+        i++;
     }
-    return (arr);
+    return (insertion_sort(arr, stack->size));
 }
 
-
-int is_sorted(t_stack *stack_a)
+int	ft_lstsize(t_stack *stack)
 {
-    if (!stack_a || !stack_a->next)
-        return (1);
-    while (stack_a->next != NULL)
-    {
-        if (stack_a->num > stack_a->next->num)
-        {
-            return (0);
-        }
-        stack_a = stack_a->next;
-    }
-    return (1);
+	int	i;
+
+	i = 0;
+	while (stack != NULL)
+	{
+		i++;
+		stack = stack->next;
+	}
+	return (i);
 }

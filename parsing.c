@@ -8,13 +8,19 @@ static void is_num(const char *str)
     if (str[i] == '-' || str[i] == '+')
         i++;
     if (!str[i])
-        err_msg();
+    {
+        write(2, "Error\n", 6);
+        exit(1);
+    }
     while (str[i])
     {
         if (str[i] >= '0' && str[i] <= '9' && i <= 11)
             i++;
         else
-            err_msg();
+        {
+            write(2, "Error\n", 6);
+            exit(1);
+        }
     }
 }
 

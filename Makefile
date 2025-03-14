@@ -1,6 +1,6 @@
 CC = cc
-FLAGS = -Wall -Wextra -Werror
-SRCS = main.c utils.c parsing.c init.c swap_op.c push_op.c rotate_op.c reverse_rotate.c sort.c utils2.c ft_swap.c
+FLAGS = #-Wall -Wextra -Werror
+SRCS = main.c utils.c parsing.c init.c swap_op.c push_op.c rotate_op.c reverse_rotate.c sort.c utils2.c ft_swap.c sort_utils.c sort2.c
 OBJS = $(SRCS:.c=.o)
 NAME = push_swap
 
