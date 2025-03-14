@@ -6,18 +6,6 @@ static int get_end(int size)
     {
         return (3);
     }
-    // else if (size <= 64)
-    // {
-    //     return (6);
-    // }
-    // else if (size <= 256)
-    // {
-    //     return (12);
-    // }
-    // else
-    // {
-    //     return (24);
-    // }
     return (0);
 }
 
@@ -40,73 +28,95 @@ static int *FromStackToArray(t_list *stack)
     }
     return (insertion_sort(arr, stack->size));
 }
-// void push_all_to_a(t_stack **stack_a, t_stack **stack_b, int size)
-// {
-//     int max;
+void push_all_to_a(t_stack **stack_a, t_stack **stack_b, int size)
+{
+    int max_index;
+    int stack_b_size; // Track the current size of stack_b
 
-//     while (*stack_b != NULL)
-//     {
-//         max = ft_max(*stack_b);
-//         if (max < size / 2)
-//         {
-//             while (max-- > 0)
-//                 do_rb(stack_b);
-//         }
-//         else
-//         {
-//             while (max++ < size - 1)
-//                 do_rrb(stack_b);
-//         }
-//         do_pa(stack_a, stack_b);
-//     }
-// }
+    stack_b_size = size;
+    while (*stack_b != NULL)
+    {
+        max_index = ft_max(*stack_b); // Get the index of the maximum value in stack_b
+
+        if (max_index < stack_b_size / 2)
+        {
+            // Rotate stack_b to bring the max value to the top
+            while (max_index-- > 0)
+                do_rb(stack_b);
+        }
+        else
+        {
+            // Reverse rotate stack_b to bring the max value to the top
+            while (max_index++ < stack_b_size)
+                do_rrb(stack_b);
+        }
+
+        // Push the max value from stack_b to stack_a
+        do_pa(stack_a, stack_b);
+
+        // Decrease the size counter
+        stack_b_size--;
+    }
+}
 static void sort_stack(t_list **stack, int *arr, int range)
 {
     int start;
     int end;
     int size;
-    t_stack *stack_a;
-    t_stack *stack_b;
+    int unsorted_count;
+    t_stack **stack_a_ptr;
+    t_stack **stack_b_ptr;
 
-    stack_a = (*stack)->stack_a;
-    stack_b = (*stack)->stack_b;
+    stack_a_ptr = &((*stack)->stack_a);
+    stack_b_ptr = &((*stack)->stack_b);
     end = range;
     size = (*stack)->size;
-    while (stack_a != NULL)
+    unsorted_count = size; // Track how many elements still need to be processed
+
+    while (unsorted_count > 0)
     {
         start = end - 2;
-        if (stack_a->num <= arr[start])
+        // Check if indices are in bounds
+
+        if ((*stack_a_ptr)->num <= arr[start])
         {
-            do_pb(&stack_a, &stack_b);
-            do_sb(&stack_b);
+            do_pb(stack_a_ptr, stack_b_ptr);
+            do_sb(stack_b_ptr);
+            unsorted_count--;
         }
-        else if (stack_a->num <= arr[end])
+        else if ((*stack_a_ptr)->num <= arr[end])
         {
-            do_pb(&stack_a, &stack_b);
+            do_pb(stack_a_ptr, stack_b_ptr);
+            unsorted_count--;
         }
         else
         {
-            do_ra(&stack_a);
+            do_ra(stack_a_ptr);
+            if (--unsorted_count <= 0)
+                break;
         }
+
         if (end < size - 1)
         {
             end++;
         }
     }
-    // printf("size = > %d\n", size);
-    // exit(1);
-    // push_all_to_a(&stack_a, &stack_b, size);
-    // while (stack_b != NULL)
+
+    // Update the stack pointers in the original structure
+    (*stack)->stack_a = *stack_a_ptr;
+    (*stack)->stack_b = *stack_b_ptr;
+
+    // Now push everything back to stack_a
+    push_all_to_a(stack_a_ptr, stack_b_ptr, size);
+    // while (stack_a != NULL)
     // {
     //     printf("Prev: %d | Current: %d | Next: %d\n",
-    //            stack_b->prev ? stack_b->prev->num : -1,
-    //            stack_b->num,
-    //            stack_b->next ? stack_b->next->num : -1);
-
-    //     stack_b = stack_b->next;
+    //            stack_a->prev ? stack_a->prev->num : -1,
+    //            stack_a->num,
+    //            stack_a->next ? stack_a->next->num : -1);
+    //     stack_a = stack_a->next;
     // }
-
-    exit(0);
+    // exit(0);
 }
 static void large_sort(t_list **stack)
 {

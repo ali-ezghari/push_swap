@@ -10,7 +10,13 @@ static void push(t_stack **from, t_stack **to)
     }
     tmp = *from;
     (*from) = (*from)->next;
+    if (*from)
+        (*from)->prev = NULL;
     tmp->next = *to;
+    tmp->prev = NULL;
+    if (*to)
+        (*to)->prev = tmp;
+    
     *to = tmp;
 }
 
