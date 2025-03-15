@@ -1,17 +1,19 @@
 #include "push_swap.h"
 
-void ft_swap(t_list **stack)
+void ft_push_swap(t_list **stack, char **arr)
 {
     if (!stack || !(*stack)->stack_a)
         return;
     if (check_doubles((*stack)->stack_a) == -1)
     {
+        free_arr(arr);
         err_msg(stack, 1);
     }
     if (is_sorted((*stack)->stack_a))
     {
+        free_arr(arr);
         free_mem(stack);
-        exit(1);
+        exit(EXIT_SUCCESS);
     }
     if ((*stack)->size == 2)
         sort_two_nums(&(*stack)->stack_a);

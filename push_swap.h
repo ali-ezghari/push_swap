@@ -24,14 +24,14 @@ typedef struct s_list
 void ft_putstr(char *str);
 long ft_atol(const char *str);
 
-void parsing(const char *av[]);
+void parsing(char **arr);
 int check_doubles(t_stack *stack);
 void err_msg(t_list **stack, int status);
 
 t_list *init_stack();
 t_stack *create_node(int data);
-void fill_stack(int argc, const char *argv[], t_list **stack);
-void ft_swap(t_list **stack);
+void fill_stack(char **arr, t_list **stack);
+void ft_push_swap(t_list **stack, char **arr);
 
 void do_pa(t_stack **stack_a, t_stack **stack_b);
 void do_pb(t_stack **stack_a, t_stack **stack_b);
@@ -59,10 +59,12 @@ int ft_max(t_stack *stack);
 int *insertion_sort(int arr[], int size);
 int *create_sort_array(t_list *stack);
 int is_sorted(t_stack *stack_a);
-int	ft_lstsize(t_stack *stack);
-int	get_end(int size);
+int ft_lstsize(t_stack *stack);
+int get_end(int size);
 
-
-
+char	*ft_strdup(const char *s);
+char **ft_split(char *str, char sep);
+char *ft_strjoin(char const *s1, char const *s2);
 void free_mem(t_list **stack);
+void free_arr(char **arr);
 #endif

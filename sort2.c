@@ -60,12 +60,11 @@ static void push_to_a(t_stack **stack_a, t_stack **stack_b)
 
 static void push_all_to_b(t_stack **stack_a, t_stack **stack_b, int *arr, int size)
 {
-    int start;
-    int end;
+    int start, end;
 
     start = 0;
     end = get_end(size);
-    while (size > 0)
+    while (size != 0)
     {
         if ((*stack_a)->num <= arr[start])
         {
@@ -86,7 +85,6 @@ static void push_all_to_b(t_stack **stack_a, t_stack **stack_b, int *arr, int si
 
 void large_sort(t_list **stack)
 {
-    int end;
     int *arr;
     int size;
 

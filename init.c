@@ -13,19 +13,23 @@ t_list *init_stack()
     return (stack);
 }
 
-void fill_stack(int argc, const char *argv[], t_list **stack)
+void fill_stack(char **arr, t_list **stack)
 {
     t_stack *new_node;
     int num;
+    int size;
 
     if (!stack || !*stack)
-        err_msg(stack,1);
-    while (--argc > 0)
+        err_msg(stack, 1);
+    size = 0;
+    while (arr[size])
+        size++;
+    while (--size >= 0)
     {
-        num = (int)ft_atol(argv[argc]);
+        num = (int)ft_atol(arr[size]);
         new_node = create_node(num);
         if (!new_node)
-            err_msg(stack,1);
+            err_msg(stack, 1);
         if ((*stack)->stack_a != NULL)
             (*stack)->stack_a->prev = new_node;
         new_node->next = (*stack)->stack_a;

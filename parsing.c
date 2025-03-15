@@ -24,15 +24,15 @@ static void is_num(const char *str)
     }
 }
 
-void parsing(const char *av[])
+void parsing(char **arr)
 {
     int i;
 
     i = 0;
-    while (av[i] != NULL)
+    while (arr[i] != NULL)
     {
-        is_num(av[i]);
-        ft_atol(av[i]);
+        is_num(arr[i]);
+        ft_atol(arr[i]);
         i++;
     }
 }
