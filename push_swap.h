@@ -68,7 +68,7 @@ void	large_sort(t_list **stack);
 
 int		ft_min(t_stack *stack);
 int		ft_max(t_stack *stack);
-int		*insertion_sort(int arr[], int size);
+int		*bubble_sort(int arr[], int size);
 int		*create_sort_array(t_list *stack);
 int		is_sorted(t_stack *stack_a);
 int		ft_lstsize(t_stack *stack);

@@ -6,31 +6,29 @@
 /*   By: aezghari <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/16 04:31:37 by aezghari          #+#    #+#             */
-/*   Updated: 2025/03/16 04:35:26 by aezghari         ###   ########.fr       */
+/*   Updated: 2025/03/16 07:31:15 by aezghari         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-int	*insertion_sort(int arr[], int size)
+int	*bubble_sort(int arr[], int size)
 {
-	int	i;
-	int	tmp;
-	int	j;
-
-	if (size <= 1)
-		return (arr);
-	i = 1;
+	int (i), (tmp), (j);
+	i = 0;
 	while (i < size)
 	{
-		tmp = arr[i];
-		j = i - 1;
-		while (j >= 0 && arr[j] > tmp)
+		j = 0;
+		while (j < size - 1 - i)
 		{
-			arr[j + 1] = arr[j];
-			j--;
+			if (arr[j] > arr[j + 1])
+			{
+				tmp = arr[j];
+				arr[j] = arr[j + 1];
+				arr[j + 1] = tmp;
+			}
+			j++;
 		}
-		arr[j + 1] = tmp;
 		i++;
 	}
 	return (arr);

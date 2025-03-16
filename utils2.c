@@ -73,7 +73,7 @@ int	*create_sort_array(t_list *stack)
 		tmp = tmp->next;
 		i++;
 	}
-	return (insertion_sort(arr, stack->size));
+	return (bubble_sort(arr, stack->size));
 }
 
 int	ft_lstsize(t_stack *stack)

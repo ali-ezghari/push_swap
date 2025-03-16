@@ -7,7 +7,7 @@ NAME = push_swap
 all: $(NAME)
 
 %.o: %.c
-	$(CC) $(FLAGS) -O3 -c $< -o $@
+	$(CC) $(FLAGS) -c $< -o $@
 
 $(NAME): $(OBJS)
 	$(CC) $(FLAGS) $(OBJS) -o $(NAME)
