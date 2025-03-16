@@ -23,7 +23,7 @@ static int	is_num(const char *str)
 		return (-1);
 	while (str[i])
 	{
-		if (str[i] >= '0' && str[i] <= '9' && i <= 11)
+		if (str[i] >= '0' && str[i] <= '9')
 			i++;
 		else
 			return (-1);
