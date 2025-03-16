@@ -6,7 +6,7 @@
 /*   By: aezghari <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/15 21:10:21 by aezghari          #+#    #+#             */
-/*   Updated: 2025/03/15 21:11:07 by aezghari         ###   ########.fr       */
+/*   Updated: 2025/03/16 07:17:16 by aezghari         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,4 +65,18 @@ int	check_doubles(t_stack *stack)
 		stack = stack->next;
 	}
 	return (1);
+}
+
+int	white_spaces(const char *str)
+{
+	int	i;
+
+	i = 0;
+	while (str[i])
+	{
+		if (str[i] != ' ')
+			return (-1);
+		i++;
+	}
+	return (0);
 }

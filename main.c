@@ -23,6 +23,8 @@ static int	empty_check(const char **argv)
 	{
 		if (argv[i][0] == '\0')
 			return (-1);
+		if (white_spaces(argv[i]) == 0)
+			return (-1);
 		i++;
 	}
 	return (0);

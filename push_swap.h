@@ -79,5 +79,6 @@ char	**ft_split(char *str, char sep);
 char	*ft_strjoin(char const *s1, char const *s2);
 void	free_mem(t_list **stack, char **arr);
 void	free_arr(char **arr);
+int		white_spaces(const char *str);
 
 #endif
