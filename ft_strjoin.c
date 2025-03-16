@@ -1,8 +1,20 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   ft_strjoin.c                                       :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: aezghari <marvin@42.fr>                    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2025/03/16 04:52:10 by aezghari          #+#    #+#             */
+/*   Updated: 2025/03/16 04:52:59 by aezghari         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "push_swap.h"
 
-static size_t ft_strlen(const char *s)
+static size_t	ft_strlen(const char *s)
 {
-	size_t i;
+	size_t	i;
 
 	i = 0;
 	while (s[i])
@@ -12,10 +24,10 @@ static size_t ft_strlen(const char *s)
 	return (i);
 }
 
-char *ft_strdup(const char *s)
+char	*ft_strdup(const char *s)
 {
-	char *str;
-	size_t i;
+	char	*str;
+	size_t	i;
 
 	i = 0;
 	str = malloc(sizeof(char) * ft_strlen(s) + 1);
@@ -31,11 +43,12 @@ char *ft_strdup(const char *s)
 	str[i] = '\0';
 	return (str);
 }
-char *ft_strjoin(char const *s1, char const *s2)
+
+char	*ft_strjoin(char const *s1, char const *s2)
 {
-	size_t i;
-	size_t j;
-	char *str;
+	size_t	i;
+	size_t	j;
+	char	*str;
 
 	if (!s1 && !s2)
 		return (NULL);

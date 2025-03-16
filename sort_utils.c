@@ -1,41 +1,54 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   sort_utils.c                                       :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: aezghari <marvin@42.fr>                    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2025/03/16 04:31:37 by aezghari          #+#    #+#             */
+/*   Updated: 2025/03/16 04:35:26 by aezghari         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "push_swap.h"
 
-
-int *insertion_sort(int arr[], int size)
+int	*insertion_sort(int arr[], int size)
 {
-    int i, tmp, j;
+	int	i;
+	int	tmp;
+	int	j;
 
-    if (size <= 1)
-        return arr;
-
-    for (i = 1; i < size; i++) // Start from index 1
-    {
-        tmp = arr[i];
-        j = i - 1;
-        while (j >= 0 && arr[j] > tmp)
-        {
-            arr[j + 1] = arr[j]; // Shift instead of swapping
-            j--;
-        }
-        arr[j + 1] = tmp; // Insert tmp once in the correct place
-    }
-    return (arr);
+	if (size <= 1)
+		return (arr);
+	i = 1;
+	while (i < size)
+	{
+		tmp = arr[i];
+		j = i - 1;
+		while (j >= 0 && arr[j] > tmp)
+		{
+			arr[j + 1] = arr[j];
+			j--;
+		}
+		arr[j + 1] = tmp;
+		i++;
+	}
+	return (arr);
 }
 
-
-int is_sorted(t_stack *stack_a)
+int	is_sorted(t_stack *stack_a)
 {
-    if (!stack_a || !stack_a->next)
-        return (1);
-    while (stack_a->next != NULL)
-    {
-        if (stack_a->num > stack_a->next->num)
-        {
-            return (0);
-        }
-        stack_a = stack_a->next;
-    }
-    return (1);
+	if (!stack_a || !stack_a->next)
+		return (1);
+	while (stack_a->next != NULL)
+	{
+		if (stack_a->num > stack_a->next->num)
+		{
+			return (0);
+		}
+		stack_a = stack_a->next;
+	}
+	return (1);
 }
 
 int	get_end(int size)

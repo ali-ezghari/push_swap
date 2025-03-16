@@ -1,43 +1,55 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   reverse_rotate.c                                   :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: aezghari <marvin@42.fr>                    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2025/03/16 04:37:35 by aezghari          #+#    #+#             */
+/*   Updated: 2025/03/16 04:55:11 by aezghari         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "push_swap.h"
 
-static void rev_rotate(t_stack **stack)
+static void	rev_rotate(t_stack **stack)
 {
-    t_stack *last;
-    t_stack *before_last;
+	t_stack	*last;
+	t_stack	*before_last;
 
-    if (!stack || !*stack || !(*stack)->next)
-    {
-        return;
-    }
-    last = *stack;
-    while (last->next != NULL)
-    {
-        last = last->next;
-    }
-    before_last = last->prev;
-    if (before_last)
-        before_last->next = NULL; // if there is only two nodes
-    last->next = *stack;
-    last->prev = NULL;
-    (*stack)->prev = last;
-    *stack = last;
-} 
-
-void do_rra(t_stack **stack_a)
-{
-    rev_rotate(stack_a);
-    ft_putstr("rra\n");
+	if (!stack || !*stack || !(*stack)->next)
+	{
+		return ;
+	}
+	last = *stack;
+	while (last->next != NULL)
+	{
+		last = last->next;
+	}
+	before_last = last->prev;
+	if (before_last)
+		before_last->next = NULL;
+	last->next = *stack;
+	last->prev = NULL;
+	(*stack)->prev = last;
+	*stack = last;
 }
 
-void do_rrb(t_stack **stack_b)
+void	do_rra(t_stack **stack_a)
 {
-    rev_rotate(stack_b);
-    ft_putstr("rrb\n");
+	rev_rotate(stack_a);
+	ft_putstr("rra\n");
 }
 
-void do_rrr(t_stack **stack_a, t_stack **stack_b)
+void	do_rrb(t_stack **stack_b)
 {
-    rev_rotate(stack_a);
-    rev_rotate(stack_b);
-    ft_putstr("rrr\n");
+	rev_rotate(stack_b);
+	ft_putstr("rrb\n");
+}
+
+void	do_rrr(t_stack **stack_a, t_stack **stack_b)
+{
+	rev_rotate(stack_a);
+	rev_rotate(stack_b);
+	ft_putstr("rrr\n");
 }
