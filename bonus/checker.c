@@ -1,10 +1,10 @@
 #include "checker.h"
 
-static char	*ft_joiner(const char *argv[])
+static char *ft_joiner(const char *argv[])
 {
-	char	*str;
-	char	*tmp;
-	int		i;
+	char *str;
+	char *tmp;
+	int i;
 
 	i = -1;
 	str = ft_strdup("");
@@ -29,10 +29,10 @@ static char	*ft_joiner(const char *argv[])
 	return (str);
 }
 
-static char	**ft_splitter(const char *argv[])
+static char **ft_splitter(const char *argv[])
 {
-	char	**arr;
-	char	*str;
+	char **arr;
+	char *str;
 
 	str = ft_joiner(argv);
 	if (!str)
@@ -44,10 +44,58 @@ static char	**ft_splitter(const char *argv[])
 	return (arr);
 }
 
-int	main(int argc, const char *argv[])
+int verifyAndExecute(char *str, t_stack **a, t_stack **b)
 {
-	t_list	*stack;
-	char	**arr;
+	if (strncmp(str, "pa", 2) == 0)
+		do_pa(a, b);
+	else if (strncmp(str, "pb", 2) == 0)
+		do_pb(a, b);
+	else if (strncmp(str, "sa", 2) == 0)
+		do_sa(a);
+	else if (strncmp(str, "sb", 2) == 0)
+		do_sb(b);
+	else if (strncmp(str, "ss", 2) == 0)
+		do_ss(a, b);
+	else if (strncmp(str, "ra", 2) == 0)
+		do_ra(a);
+	else if (strncmp(str, "rb", 2) == 0)
+		do_rb(b);
+	else if (strncmp(str, "rr", 2) == 0)
+		do_rr(a, b);
+	else if (strncmp(str, "rra", 2) == 0)
+		do_rra(a);
+	else if (strncmp(str, "rrb", 2) == 0)
+		do_rrb(b);
+	else if (strncmp(str, "rrr", 2) == 0)
+		do_rrr(a, b);
+	else
+		return (-1);
+	return (0);
+}
+
+static void checker_exe(t_list **stack, char **arr)
+{
+	char *str;
+
+	str = get_next_line(0);
+	while (str)
+	{
+		if (verifyAndExecute(str, (*stack)->stack_a, (*stack)->stack_b) == -1)
+			err_msg(stack, arr);
+		str = get_next_line(0);
+	}
+	if (is_sorted((*stack)->stack_a))
+		ft_putstr("OK");
+	else
+		ft_putstr("KO");
+}
+
+int main(int argc, const char *argv[])
+{
+	t_list *stack;
+	char **arr;
+	char *str;
+
 	stack = NULL;
 	if (argc < 2)
 		return (0);
@@ -65,6 +113,7 @@ int	main(int argc, const char *argv[])
 		exit(EXIT_SUCCESS);
 	}
 	fill_stack(arr, &stack);
+	checker_exe(&stack, arr);
 	free_mem(&stack, arr);
 	return (0);
 }
