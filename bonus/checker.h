@@ -59,4 +59,5 @@ int	parsing(char **arr);
 int	check_doubles(t_stack *stack);
 int	white_spaces(const char *str);
 int	empty_check(const char **argv);
+int is_sorted(t_stack *stack);
 #endif
