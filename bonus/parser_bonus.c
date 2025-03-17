@@ -1,0 +1,88 @@
+#include "checker.h"
+
+static int	is_num(const char *str)
+{
+	int	i;
+
+	i = 0;
+	if (str[i] == '-' || str[i] == '+')
+		i++;
+	if (!str[i])
+		return (-1);
+	while (str[i])
+	{
+		if (str[i] >= '0' && str[i] <= '9')
+			i++;
+		else
+			return (-1);
+	}
+	return (0);
+}
+
+int	parsing(char **arr)
+{
+	int	i;
+
+	i = 0;
+	while (arr[i] != NULL)
+	{
+		if (is_num(arr[i]) == -1)
+			return (-1);
+		if (ft_atol(arr[i]) > INT_MAX || ft_atol(arr[i]) < INT_MIN)
+			return (-1);
+		i++;
+	}
+	return (0);
+}
+
+int	check_doubles(t_stack *stack)
+{
+	t_stack	*tmp;
+
+	if (!stack)
+		return (-1);
+	while (stack != NULL)
+	{
+		tmp = stack->next;
+		while (tmp != NULL)
+		{
+			if (stack->num == tmp->num)
+				return (-1);
+			tmp = tmp->next;
+		}
+		stack = stack->next;
+	}
+	return (1);
+}
+
+int	empty_check(const char **argv)
+{
+	int	i;
+
+	i = 0;
+	if (!argv)
+		return (-1);
+	while (argv[i] != NULL)
+	{
+		if (argv[i][0] == '\0')
+			return (-1);
+		if (white_spaces(argv[i]) == 0)
+			return (-1);
+		i++;
+	}
+	return (0);
+}
+
+int	white_spaces(const char *str)
+{
+	int	i;
+
+	i = 0;
+	while (str[i])
+	{
+		if (str[i] != ' ')
+			return (-1);
+		i++;
+	}
+	return (0);
+}
