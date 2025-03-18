@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   ft_split.c                                         :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: aezghari <marvin@42.fr>                    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2025/03/18 03:04:59 by aezghari          #+#    #+#             */
+/*   Updated: 2025/03/18 03:05:00 by aezghari         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "checker.h"
 
 static char	**mem_error(char **tab)
@@ -13,7 +25,7 @@ static char	**mem_error(char **tab)
 	return (NULL);
 }
 
-static int	count_words(char *str, char sep)
+static int	count_words(const char *str, char sep)
 {
 	int		i;
 	int		in_word;
@@ -38,7 +50,7 @@ static int	count_words(char *str, char sep)
 	return (count);
 }
 
-static char	*copy(char *str, int *start, char sep)
+static char	*copy(const char *str, int *start, char sep)
 {
 	char	*dest;
 	int		i;
@@ -66,7 +78,7 @@ static char	*copy(char *str, int *start, char sep)
 	return (dest);
 }
 
-char	**ft_split(char *str, char sep)
+char	**ft_split(const char *str, char sep)
 {
 	int		size;
 	int		i;

@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   get_next_line.c                                    :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: aezghari <marvin@42.fr>                    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2025/03/18 03:06:52 by aezghari          #+#    #+#             */
+/*   Updated: 2025/03/18 03:07:15 by aezghari         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "checker.h"
 
 static char	*ft_read(int fd, char *line)
@@ -90,6 +102,12 @@ char	*get_next_line(int fd)
 	if (!line)
 		return (NULL);
 	next_line = ft_extract_line(line);
+	if (!next_line)
+	{
+		free(line);
+		line = NULL;
+		return (NULL);
+	}
 	line = ft_newline(line);
 	return (next_line);
 }

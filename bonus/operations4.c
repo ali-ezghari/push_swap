@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   operations4.c                                      :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: aezghari <marvin@42.fr>                    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2025/03/18 03:13:54 by aezghari          #+#    #+#             */
+/*   Updated: 2025/03/18 03:14:28 by aezghari         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "checker.h"
 
 static void	rev_rotate(t_stack **stack)
@@ -26,18 +38,15 @@ static void	rev_rotate(t_stack **stack)
 void	do_rra(t_stack **stack_a)
 {
 	rev_rotate(stack_a);
-	ft_putstr("rra\n");
 }
 
 void	do_rrb(t_stack **stack_b)
 {
 	rev_rotate(stack_b);
-	ft_putstr("rrb\n");
 }
 
 void	do_rrr(t_stack **stack_a, t_stack **stack_b)
 {
 	rev_rotate(stack_a);
 	rev_rotate(stack_b);
-	ft_putstr("rrr\n");
 }
